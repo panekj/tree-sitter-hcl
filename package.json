@@ -3,11 +3,21 @@
   "version": "0.2.0-snapshot",
   "description": "",
   "main": "bindings/node",
+  "types": "bindings/node",
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nan": "^2.14.2",
-    "tree-sitter-cli": "^0.20.6"
+    "tree-sitter-cli": "^0.20.6",
+    "node-addon-api": "^7.1.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "tree_sitter": {
+      "optional": true
+    }
   },
   "tree-sitter": [
     {
@@ -18,5 +28,20 @@
         "tfvars"
       ]
     }
+  ],
+  "devDependencies": {
+    "prebuildify": "^6.0.0"
+  },
+  "scripts": {
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip"
+  },
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
   ]
 }
